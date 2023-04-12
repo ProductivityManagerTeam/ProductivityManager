@@ -1,0 +1,20 @@
+GET http://localHost:3000/users/login
+Content-Type: application/json
+
+{
+    "username": "jsmith",
+    "password": "jsmith"
+}
+
+###
+
+POST http://localHost:3000/users/signup
+Content-Type: application/json
+
+{
+    "firstName": "Gill",
+    "lastName": "Smith",
+    "Email": "Gsmith@gmail.com",
+    "username": "Gsmith",
+    "password": "smith"
+}
