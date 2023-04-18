@@ -1,0 +1,44 @@
+GET http://localHost:3000/users/login
+Content-Type: application/json
+
+{
+    "username": "jsmith",
+    "password": "jsmith"
+}
+
+###
+
+POST http://localHost:3000/users/signup
+Content-Type: application/json
+
+{
+    "firstName": "Gill",
+    "lastName": "Smith",
+    "Email": "Gsmith@gmail.com",
+    "username": "Gsmith",
+    "password": "smith"
+}
+
+###
+
+POST http://localHost:3000/tasks/create
+Content-Type: application/json
+
+{
+    "name": "Eat",
+    "time": "9:00 am",
+    "points": "10",
+    "date": "04/17/2023",
+    "userID": "6435bd95c24a1f9badf71eee"
+}
+
+###
+
+DELETE http://localHost:3000/tasks/delete
+Content-Type: application/json
+
+{
+    "taskID": "643dddee544cc9220fbc4d29",
+    "date": "04/17/2023",
+    "userID": "6435bd95c24a1f9badf71eee"
+}
