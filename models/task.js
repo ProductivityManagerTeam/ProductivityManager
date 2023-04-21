@@ -18,6 +18,11 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isChecked: {
+        type: Boolean,
+        required:true,
+        default: false
+    },
     userID: {
         type: String,
         required: true

@@ -18,3 +18,32 @@ Content-Type: application/json
     "username": "Gsmith",
     "password": "smith"
 }
+
+###
+
+POST http://localHost:3000/tasks/create
+Content-Type: application/json
+
+{
+    "name"   : "chores",
+    "time"   : "30",
+    "points" : "12",
+    "date"   : "04/20/2023",
+    "userID" : "    "
+}
+
+###
+
+PUT http://localHost:3000/tasks/update
+Content-Type: application/json
+
+{
+    "name"   : "Eat",
+    "time"   : "9:00 am",
+    "points" : "15",
+    "date"   : "04/17/2023",
+    "isChecked" : true,
+
+    "userID" : "6435bd95c24a1f9badf71eee",
+    "taskID" : "643dddee544cc9220fbc4d29"
+}
