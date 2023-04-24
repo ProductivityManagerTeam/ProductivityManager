@@ -15,7 +15,7 @@ async function getTasks(req, res, next) {
 
     try {
 
-        taskList = await Task.find({userID: req.body.userID, currentDate: req.body.currentDate});
+        taskList = await Task.find({userID: req.body.userID, date: req.body.currentDate});
 
         if (taskList == null) {
 

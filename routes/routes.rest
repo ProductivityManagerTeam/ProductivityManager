@@ -18,3 +18,13 @@ Content-Type: application/json
     "username": "Gsmith",
     "password": "smith"
 }
+
+###
+
+GET http://localHost:3000/tasks/task-list
+Content-Type: application/json
+
+{
+    "userID": "6435bd95c24a1f9badf71eee",
+    "currentDate": "04/20/2023"
+}
