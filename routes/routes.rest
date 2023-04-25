@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
     "userID": "6435bd95c24a1f9badf71eee",
-    "currentDate": "04/20/2023"
+    "currentDate": "04/17/2023"
 }
 
 ###
@@ -35,7 +35,7 @@ POST http://localHost:3000/tasks/create
 Content-Type: application/json
 
 {
-"name": "Eat", "time": "9:00 am", "points": "10", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+"name": "laugh", "time": "9:00 am", "points": "10", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
@@ -45,4 +45,19 @@ Content-Type: application/json
 
 {
 "taskID": "6435bd95c24a1f9badf71eee", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+}
+
+###
+
+PUT http://localHost:3000/tasks/update
+Content-Type: application/json
+
+{
+    "name"   : "win",
+    "time"   : "9:00 am",
+    "points" : "15",
+    "date"   : "04/17/2023",
+    "isChecked" : true,
+    "userID" : "6435bd95c24a1f9badf71eee",
+    "taskID" : "6447367d3248c08ecaee2d99"
 }

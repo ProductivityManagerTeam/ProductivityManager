@@ -54,7 +54,7 @@ router.post('/create', async (req, res) => {
 
 // update
 router.put('/update', getTask, async (req, res) => {
-    let task = res.tasks[0]
+    let task = res.tasks[0];
 
     try {
       task.name       = req.body.name
@@ -63,7 +63,7 @@ router.put('/update', getTask, async (req, res) => {
       task.date       = req.body.date
       task.isChecked  = req.body.isChecked
 
-      await tasks.save();
+      await task.save();
     } catch (error) {
       if (task == null) {
         res.status(500).json({message: "No task found."});
@@ -84,7 +84,7 @@ async function getTask(req, res, next) {
     let task;
 
     try {
-        task = await tasks.find({
+        task = await Task.find({
             userID: req.body.userID, 
             _id: req.body.taskID,
         });
