@@ -35,7 +35,7 @@ POST http://localHost:3000/tasks/create
 Content-Type: application/json
 
 {
-"name": "laugh", "time": "9:00 am", "points": "10", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+"name": "Run", "time": "12:00 am", "points": "20", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
