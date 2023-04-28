@@ -16,6 +16,10 @@ const dateSchema = new mongoose.Schema({
     pointsCompleted: {
         type: Number,
         required: true
+    },
+    tasksAssigned: {
+        type: Number,
+        required: true
     }
 })
 

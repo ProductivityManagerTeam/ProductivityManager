@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Task = require('../models/task');
 const Date = require('../models/date');
+const date = require('../models/date');
 mongoose.connect(process.env.DATABASE_URL);
 
 router.get('/task-list', getTasks, (req, res) => {
@@ -51,7 +52,8 @@ router.post('/create', getDate, async (req, res) => {
             date: req.body.date,
             userID: req.body.userID,
             points: req.body.points,
-            pointsCompleted: "0"
+            pointsCompleted: 0,
+            tasksAssigned: 1
         });
 
         try {
@@ -68,6 +70,7 @@ router.post('/create', getDate, async (req, res) => {
         try {
 
             date.points = parseInt(date.points) + parseInt(req.body.points);
+            date.tasksAssigned = parseInt(date.tasksAssigned) + 1;
     
             await date.save();
         } catch (error) {
@@ -90,9 +93,31 @@ router.post('/create', getDate, async (req, res) => {
 });
 
 // update
-router.put('/update', getTask, async (req, res) => {
+router.put('/update', getTask, getDate, async (req, res) => {
     let task = res.tasks[0];
+    
+    let date = res.dates[0];
 
+    try {
+        //check if the isChecked state has changed
+        if (date.isChecked !== req.body.isChecked) {
+
+            if (req.body.isChecked == "false" ) {
+
+                date.pointsCompleted = parseInt(date.pointsCompleted) - parseInt(task.points);
+
+            } else {
+
+                date.pointsCompleted = parseInt(date.pointsCompleted) + parseInt(task.points);
+
+            }
+            
+            await date.save();
+        }
+    } catch(error) {
+        res.status(500).json({message: error.message});
+    }
+    
     try {
       task.name       = req.body.name
       task.time       = req.body.time
@@ -111,7 +136,35 @@ router.put('/update', getTask, async (req, res) => {
 });
 
        // Delete an entry
-router.delete("/delete", async (req, res) => {
+router.delete("/delete", getDate, getTask, async (req, res) => {
+    let task = res.tasks[0];
+    let date = res.dates[0];
+
+    try{
+        
+        //check that there are still tasks so date document is needed
+        if (date !== undefined) {
+            
+            if (parseInt(date.tasksAssigned) > 1) {
+
+                date.points = parseInt(date.points) - parseInt(task.points);
+
+                if (task.isChecked == true) {
+                    date.pointsCompleted = parseInt(date.pointsCompleted) - parseInt(task.points);
+                }
+
+                date.tasksAssigned = parseInt(date.tasksAssigned) - 1;
+                await date.save();
+            } else {
+                await Date.deleteOne({
+                    userID: req.body.userID,
+                    date: req.body.date});
+            }
+        }
+    } catch(error) {
+        res.status(500).json({message: error.message});
+    }
+
     let result = await Task.deleteOne({_id: req.body.taskID, userID: req.body.userID});
     res.send(result).status(200);
 });

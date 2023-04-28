@@ -35,7 +35,7 @@ POST http://localHost:3000/tasks/create
 Content-Type: application/json
 
 {
-"name": "Run", "time": "12:00 am", "points": "20", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+"name": "run", "time": "9:00 am", "points": "10", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
@@ -44,7 +44,7 @@ DELETE http://localHost:3000/tasks/delete
 Content-Type: application/json
 
 {
-"taskID": "6435bd95c24a1f9badf71eee", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+"taskID": "644b683b4cbacab08ddb0269", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
@@ -53,11 +53,20 @@ PUT http://localHost:3000/tasks/update
 Content-Type: application/json
 
 {
-    "name"   : "win",
-    "time"   : "9:00 am",
-    "points" : "15",
+    "name"   : "walk",
+    "time"   : "10:00 am",
+    "points" : "20",
     "date"   : "04/17/2023",
-    "isChecked" : true,
+    "isChecked" : "true",
     "userID" : "6435bd95c24a1f9badf71eee",
-    "taskID" : "6447367d3248c08ecaee2d99"
+    "taskID" : "644b683b4cbacab08ddb0269"
+}
+
+###
+
+GET http://localHost:3000/statistics/results
+Content-Type: application/json
+
+{
+    "userID" : "6435bd95c24a1f9badf71eee"
 }

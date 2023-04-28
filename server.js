@@ -14,8 +14,10 @@ app.use(express.json());
 
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
+const statisticsRouter = require('./routes/statistics');
 
 app.use('/users', usersRouter);
 app.use('/tasks',tasksRouter);
+app.use('/statistics', statisticsRouter);
 
 app.listen(3000, () => console.log(`Listening on... ${PORT}`));
