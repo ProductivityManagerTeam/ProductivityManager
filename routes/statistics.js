@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Date = require('../models/date');
 mongoose.connect(process.env.DATABASE_URL);
 
-router.get('/results', getDate, (req, res) => {
+router.post('/results', getDate, (req, res) => {
     let dates = res.dates;
     let totalPoints = 0;
     let totalCompleted = 0;
@@ -17,13 +17,12 @@ router.get('/results', getDate, (req, res) => {
         totalPoints += dates[i].points;
         totalCompleted += dates[i].pointsCompleted;
     }
-
+    
     successRate = (totalCompleted/totalPoints) * 100;
     avgPointsAttempted = totalPoints/dates.length;
     avgPointsCompleted = totalCompleted/dates.length;
 
    if (dates != 'undefined') {
-    
     res.status(200).json({
         averagePointsAttemptedPerDay: avgPointsAttempted,
         averagePointsCompletedPerDay: avgPointsCompleted,
@@ -39,7 +38,7 @@ router.get('/results', getDate, (req, res) => {
 async function getDate(req, res, next) {
 
     let date;
-
+    console.log(req.body.userID);
     try {
         date = await Date.find({
                 userID: req.body.userID,

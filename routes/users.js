@@ -4,16 +4,19 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 mongoose.connect(process.env.DATABASE_URL);
 
-router.get('/login', getUser, (req, res) => {
-    
-
+router.post('/login', getUser, (req, res) => {
     if (res.user[0].password == req.body.password) {
-
-        res.json({id: res.user[0]._id});
+        try {
+        
+            res.status(200).json({id: res.user[0]._id});
+            console.log(res.user[0]._id);
+        } catch (error) {
+            res.status(500).json({message: error});
+        }
 
     } else {
 
-        res.status(400).json({message: "Incorrect Password"});
+        res.status(400).json({message: "Incorrect Password", id: "Not Found"});
     }
 
 });
@@ -29,9 +32,9 @@ router.post('/signup', async (req, res) => {
         }
     );
 
-    let doesUserExist = User.find({username: req.body.username});
-
-    if (doesUserExist) {
+    let doesUserExist = await User.find({username: req.body.username});
+        console.log(doesUserExist[0]);
+    if (doesUserExist[0]) {
 
         res.json({message: "Username Exists"});
 

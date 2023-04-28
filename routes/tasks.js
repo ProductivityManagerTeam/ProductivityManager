@@ -6,14 +6,14 @@ const Date = require('../models/date');
 const date = require('../models/date');
 mongoose.connect(process.env.DATABASE_URL);
 
-router.get('/task-list', getTasks, (req, res) => {
+router.post('/task-list', getTasks, (req, res) => {
     
         res.json(res.taskList);
 
 });
 
 async function getTasks(req, res, next) {
-    let tasklist;
+    let taskList;
 
     try {
 
@@ -100,7 +100,7 @@ router.put('/update', getTask, getDate, async (req, res) => {
 
     try {
         //check if the isChecked state has changed
-        if (date.isChecked !== req.body.isChecked) {
+        if (date.isChecked != req.body.isChecked) {
 
             if (req.body.isChecked == "false" ) {
 
@@ -122,8 +122,7 @@ router.put('/update', getTask, getDate, async (req, res) => {
       task.name       = req.body.name
       task.time       = req.body.time
       task.points     = req.body.points
-      task.date       = req.body.date
-      task.isChecked  = req.body.isChecked
+      task.isChecked  = req.body.isChecked ? true : false;
 
       await task.save();
     } catch (error) {
@@ -139,7 +138,7 @@ router.put('/update', getTask, getDate, async (req, res) => {
 router.delete("/delete", getDate, getTask, async (req, res) => {
     let task = res.tasks[0];
     let date = res.dates[0];
-
+    console.log(task);
     try{
         
         //check that there are still tasks so date document is needed
@@ -173,6 +172,7 @@ router.delete("/delete", getDate, getTask, async (req, res) => {
 async function getTask(req, res, next) {
     let task;
 
+    //console.log(req.body.taskID);
     try {
         task = await Task.find({
             userID: req.body.userID, 
@@ -193,7 +193,7 @@ async function getTask(req, res, next) {
 async function getDate(req, res, next) {
 
     let date;
-
+    console.log(req.body.date);
     try {
         date = await Date.find({
                 userID: req.body.userID,

@@ -1,27 +1,27 @@
-GET http://localHost:3000/users/login
+POST http://localHost:3001/users/login
 Content-Type: application/json
 
 {
-    "username": "jsmith",
-    "password": "jsmith"
+    "username": "Jim",
+    "password": "J"
 }
 
 ###
 
-POST http://localHost:3000/users/signup
+POST http://localHost:3001/users/signup
 Content-Type: application/json
 
 {
-    "firstName": "Gill",
-    "lastName": "Smith",
-    "Email": "Gsmith@gmail.com",
+    "firstName": "msdfa",
+    "lastName": "bdkd",
+    "Email": "bball@gmail.com",
     "username": "Gsmith",
-    "password": "smith"
+    "password": "m3234!dfkjd"
 }
 
 ###
 
-GET http://localHost:3000/tasks/task-list
+POST  http://localHost:3001/tasks/task-list
 Content-Type: application/json
 
 {
@@ -31,40 +31,45 @@ Content-Type: application/json
 
 ###
 
-POST http://localHost:3000/tasks/create 
+POST http://localHost:3001/tasks/create 
 Content-Type: application/json
 
 {
-"name": "run", "time": "9:00 am", "points": "10", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+    "name": "work", 
+    "time": "11:00 am", 
+    "points": "6", 
+    "date": "04/17/2023", 
+    "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
 
-DELETE http://localHost:3000/tasks/delete 
+DELETE http://localHost:3001/tasks/delete 
 Content-Type: application/json
 
 {
-"taskID": "644b683b4cbacab08ddb0269", "date": "04/17/2023", "userID": "6435bd95c24a1f9badf71eee"
+    "taskID": "644b6fba3e98cdfec61f4f15", 
+    "date": "04/17/2023", 
+    "userID": "6435bd95c24a1f9badf71eee"
 }
 
 ###
 
-PUT http://localHost:3000/tasks/update
+PUT http://localHost:3001/tasks/update
 Content-Type: application/json
 
 {
-    "name"   : "walk",
-    "time"   : "10:00 am",
+    "name"   : "pool",
+    "time"   : "9:00 am",
     "points" : "20",
-    "date"   : "04/17/2023",
-    "isChecked" : "true",
+    "isChecked" : true,
     "userID" : "6435bd95c24a1f9badf71eee",
-    "taskID" : "644b683b4cbacab08ddb0269"
+    "taskID" : "644b6a9bc67eafc3717be7be"
 }
 
 ###
 
-GET http://localHost:3000/statistics/results
+GET http://localHost:3001/statistics/results
 Content-Type: application/json
 
 {
