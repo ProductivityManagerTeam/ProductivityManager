@@ -1,0 +1,77 @@
+POST http://localHost:3001/users/login
+Content-Type: application/json
+
+{
+    "username": "Manny",
+    "password": "manny"
+}
+
+###
+
+POST http://localHost:3001/users/signup
+Content-Type: application/json
+
+{
+    "firstName": "Billy",
+    "lastName": "Bob",
+    "Email": "billy@gmail.com",
+    "username": "Bobby",
+    "password": "helloWorld1"
+}
+
+###
+
+POST  http://localHost:3001/tasks/task-list
+Content-Type: application/json
+
+{
+    "userID": "644c803ba5888ce460eb1b74",
+    "currentDate": "04/28/2023"
+}
+
+###
+
+POST http://localHost:3001/tasks/create 
+Content-Type: application/json
+
+{
+    "name": "dinner", 
+    "time": "7:00 pm", 
+    "points": "2", 
+    "date": "04/28/2023", 
+    "userID": "644c803ba5888ce460eb1b74"
+}
+
+###
+
+DELETE http://localHost:3001/tasks/delete 
+Content-Type: application/json
+
+{
+    "_id": "644c80e7a5888ce460eb1b94", 
+    "date": "04/28/2023", 
+    "userID": "644c803ba5888ce460eb1b74"
+}
+
+###
+
+PUT http://localHost:3001/tasks/update
+Content-Type: application/json
+
+{
+    "name"   : "walk",
+    "time"   : "9:00 am",
+    "points" : "2",
+    "isChecked" : true,
+    "userID" : "644c80b8a5888ce460eb1b87",
+    "taskID" : "644c803ba5888ce460eb1b74"
+}
+
+###
+
+POST http://localHost:3001/statistics/results
+Content-Type: application/json
+
+{
+    "userID" : "644c8ac62ea692e3de1f0e59"
+}
